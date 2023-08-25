@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import WhatsOnYourMind from './components/WhatsOnYourMind';
+import AutoMovingCards from './components/AutoMovingCards';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar userRegistered={false} />
+      <div className="content">
+        <WhatsOnYourMind />
+        <div className="main-section">
+          <div className="left-half">
+            {/* Add WhatsOnYourMind component here */}
+          </div>
+          <div className="right-half">
+            <AutoMovingCards />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
