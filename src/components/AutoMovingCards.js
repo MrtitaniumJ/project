@@ -1,27 +1,40 @@
-import React from 'react';
-import '../styles.css';
+import React from 'react'; // Import React
 
-const AutoMovingCards = () => {
-  // Sample event data
-  const events = [
-    { id: 1, name: 'Event 1', description: 'Description of Event 1' },
-    { id: 2, name: 'Event 2', description: 'Description of Event 2' },
-    // Add more events here
-  ];
+import mobiscroll from '@mobiscroll/react';
+import '@mobiscroll/react/dist/css/mobiscroll.min.css';
 
-  return (
-    <div className="auto-moving-cards">
-      {events.map(event => (
-        <div className="card" key={event.id}>
-          <img src={`event-${event.id}.jpg`} alt={event.name} />
-          <div className="card-content">
-            <h3>{event.name}</h3>
-            <p>{event.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+class AppItem extends React.Component {
+    render = () => {
+        var app = this.props.app;
+        return <mobiscroll.Card theme="ios"  themeVariant="light">
+                    <mobiscroll.CardContent>
+                        <img className="md-img" src={app.image} draggable="false" alt="App Icon" />
+                        <mobiscroll.CardTitle>{app.title}</mobiscroll.CardTitle>
+                        <mobiscroll.CardSubtitle>{app.dev}</mobiscroll.CardSubtitle>
+                        <div className="md-rank">{app.rank}<span className="mbsc-ic mbsc-ic-star3"></span></div>
+                    </mobiscroll.CardContent>
+                </mobiscroll.Card>;
+    }
 }
 
-export default AutoMovingCards;
+class App extends React.Component {
+    render = () => {
+        return  <div className="md-cards">
+            <div className="md-card-cont">
+                <h3>New & Updated Games</h3>
+                <mobiscroll.ScrollView className="demo-card" layout="fixed" itemWidth={134} snap={false} theme="ios"  themeVariant="light">
+                    {this.props.newGames.map(function(app) {
+                        return <AppItem app={app} key={app.id} />;
+                    })}
+                </mobiscroll.ScrollView>
+                
+                {/* Rest of your code */}
+                
+            </div>
+        </div>;
+    }
+    
+    // Rest of your code
+}
+
+export default App; // Export your App component
